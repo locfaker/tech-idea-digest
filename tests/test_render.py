@@ -31,6 +31,8 @@ def test_render_digest_groups_items_by_category_and_shows_ranking_score():
     digest = render_digest([item], generated_at=datetime(2026, 4, 30, tzinfo=timezone.utc))
 
     assert "Daily Technology Ideas Digest - 2026-04-30" in digest.subject
-    assert "[91] Agents & Automation - Agentic Memory Architectures" in digest.body
+    assert "Score: 91/100" in digest.body
+    assert "Category: Agents & Automation" in digest.body
+    assert "Title: Agentic Memory Architectures" in digest.body
     assert "Why it matters:" in digest.body
     assert "Source: arXiv AI (Tier 1)" in digest.body

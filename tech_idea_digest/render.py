@@ -26,7 +26,7 @@ def render_digest(items: list[RankedItem], *, generated_at: datetime | None = No
     for category in sorted(grouped):
         lines.extend(["", category])
         for item in grouped[category]:
-            lines.append(f"- [{item.score}] {item.title}")
+            lines.append(f"- {item.score}/100 - {item.title}")
             lines.append(f"  Link: {item.url}")
 
     return Digest(subject=subject, body="\n".join(lines))
@@ -37,7 +37,9 @@ def _render_item(item: RankedItem) -> list[str]:
     signals = ", ".join(item.signals)
     return [
         "",
-        f"[{item.score}] {item.category} - {item.title}",
+        f"Score: {item.score}/100",
+        f"Category: {item.category}",
+        f"Title: {item.title}",
         f"Summary: {_one_line(item.summary)}",
         f"Why it matters: {why}",
         f"Source: {item.source.name} (Tier {item.source.tier})",

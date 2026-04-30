@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import re
+
 from tech_idea_digest.models import ClassifiedItem, CollectedItem
 
 CATEGORY_KEYWORDS: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
         "Agents & Automation",
-        ("agent", "agentic", "automation", "autonomous", "workflow", "tool use", "memory"),
+        ("agent", "agents", "agentic", "automation", "autonomous", "workflow", "tool use", "memory"),
     ),
     (
         "AI/ML",
@@ -44,7 +46,7 @@ def classify_item(item: CollectedItem) -> ClassifiedItem:
     best_matches: tuple[str, ...] = ()
 
     for category, keywords in CATEGORY_KEYWORDS:
-        matches = tuple(keyword for keyword in keywords if keyword in text)
+        matches = tuple(keyword for keyword in keywords if _matches_keyword(text, keyword))
         if len(matches) > len(best_matches):
             best_category = category
             best_matches = matches
@@ -59,3 +61,8 @@ def classify_item(item: CollectedItem) -> ClassifiedItem:
         category=best_category,
         matched_keywords=best_matches,
     )
+
+
+def _matches_keyword(text: str, keyword: str) -> bool:
+    escaped = re.escape(keyword.lower())
+    return re.search(rf"(?<![a-z0-9]){escaped}(?![a-z0-9])", text) is not None

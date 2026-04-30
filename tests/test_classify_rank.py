@@ -38,7 +38,30 @@ def test_classify_item_assigns_specific_technology_category():
     classified = classify_item(item)
 
     assert classified.category == "Agents & Automation"
-    assert "agent" in classified.matched_keywords
+    assert "agentic" in classified.matched_keywords
+
+
+def test_classify_item_does_not_match_short_keywords_inside_words():
+    systems_source = Source(
+        id="arxiv-systems",
+        name="arXiv Systems",
+        type="arxiv",
+        tier=1,
+        trust_score=0.95,
+        categories=("Cloud & DevOps",),
+        max_items=5,
+        query="cat:cs.SE",
+    )
+    item = make_item(
+        "What Is the Cost of Energy Monitoring? An Empirical Study on RAPL-Based Tools",
+        "The Running Average Power Limit interface estimates software energy consumption.",
+        source=systems_source,
+    )
+
+    classified = classify_item(item)
+
+    assert classified.category != "AI/ML"
+    assert "rag" not in classified.matched_keywords
 
 
 def test_rank_items_filters_low_quality_tier3_without_confirming_source():
