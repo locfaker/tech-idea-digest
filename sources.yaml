@@ -1,0 +1,80 @@
+sources:
+  - id: arxiv-ai
+    name: arXiv AI, ML, Agents
+    type: arxiv
+    tier: 1
+    trust_score: 1.0
+    enabled: true
+    categories: ["AI/ML", "Agents & Automation"]
+    query: "cat:cs.AI OR cat:cs.LG OR cat:cs.CL"
+    max_items: 12
+
+  - id: arxiv-security
+    name: arXiv Security
+    type: arxiv
+    tier: 1
+    trust_score: 0.95
+    enabled: true
+    categories: ["Security"]
+    query: "cat:cs.CR"
+    max_items: 8
+
+  - id: arxiv-systems
+    name: arXiv Systems, Databases, Software Engineering
+    type: arxiv
+    tier: 1
+    trust_score: 0.9
+    enabled: true
+    categories: ["Cloud & DevOps", "Data", "Web & Mobile"]
+    query: "cat:cs.DC OR cat:cs.DB OR cat:cs.SE"
+    max_items: 8
+
+  - id: google-research
+    name: Google Research Blog
+    type: rss
+    tier: 2
+    trust_score: 0.92
+    enabled: true
+    categories: ["AI/ML", "Data", "Hardware & Robotics"]
+    url: "https://research.google/blog/rss/"
+    max_items: 6
+
+  - id: github-engineering
+    name: GitHub Engineering
+    type: rss
+    tier: 2
+    trust_score: 0.86
+    enabled: true
+    categories: ["Web & Mobile", "Cloud & DevOps", "Security"]
+    url: "https://github.blog/engineering/feed/"
+    max_items: 6
+
+  - id: cloudflare
+    name: Cloudflare Blog
+    type: rss
+    tier: 2
+    trust_score: 0.86
+    enabled: true
+    categories: ["Cloud & DevOps", "Security"]
+    url: "https://blog.cloudflare.com/rss/"
+    max_items: 6
+
+  - id: aws-architecture
+    name: AWS Architecture Blog
+    type: rss
+    tier: 2
+    trust_score: 0.84
+    enabled: true
+    categories: ["Cloud & DevOps", "Data"]
+    url: "https://aws.amazon.com/blogs/architecture/feed/"
+    max_items: 5
+
+  - id: netflix-tech
+    name: Netflix Technology Blog
+    type: rss
+    tier: 2
+    trust_score: 0.82
+    enabled: true
+    categories: ["Cloud & DevOps", "Data", "Web & Mobile"]
+    url: "https://netflixtechblog.com/feed"
+    max_items: 5

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tech-idea-digest"
+version = "0.1.0"
+description = "Daily ranked technology ideas digest from curated academic and engineering sources."
+requires-python = ">=3.11"
+dependencies = [
+  "certifi>=2024.8.30",
+  "feedparser>=6.0.11",
+  "PyYAML>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+tech-idea-digest = "tech_idea_digest.__main__:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
